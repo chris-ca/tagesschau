@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>News report {{_now}}</title>
+    <style type="text/css">
+    .entry h2:first-of-type  {
+        font-size: 1.2em;
+    }
+    .entry h2 {
+        font-size: 1em;
+    }
+    .entry h3 {
+        font-size: .8em;
+        color: gray;
+    }
+    hr {
+        border-top: 1px solid #8c8b8b;
+    }
+    </style>
+</head>
+<body>
+{% for entry in entries %}
+<div class="entry">
+    <h2>{{entry.title}}</h2>
+    <h3>{{entry.date[0:16]}}</h3>
+
+    {% for p in entry.content %}
+    <p>{{ p.value }}</p>
+    {% endfor %}
+
+    <p><a href="{{entry.url}}">Zur Meldung</a></p>
+</div>
+<hr>
+{% endfor %}
+</body>
+</html>
