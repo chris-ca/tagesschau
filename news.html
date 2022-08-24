@@ -7,6 +7,8 @@
     <style type="text/css">
     .entry h2:first-of-type  {
         font-size: 1.2em;
+        background-color: gray;
+        color: #fff;
     }
     .entry h2 {
         font-size: 1em;
@@ -21,16 +23,23 @@
     </style>
 </head>
 <body>
+<ol id="contents" class="contents">
 {% for entry in entries %}
+{% set anchor='entry'+loop.index|string %}
+    <li><small>{{entry.date[11:16]}}</small> <a href="#{{ anchor }}">{{entry.title}}</a><br />{{ entry.firstSentence }}</li>
+{% endfor %}
+</ol>
+{% for entry in entries %}
+{% set anchor='entry'+loop.index|string %}
 <div class="entry">
-    <h2>{{entry.title}}</h2>
+    <h2 id="{{ anchor }}">{{entry.title}}</h2>
     <h3>{{entry.date[0:16]}}</h3>
 
     {% for p in entry.content %}
     <p>{{ p.value }}</p>
     {% endfor %}
 
-    <p><a href="{{entry.url}}">Zur Meldung</a></p>
+    <p><a href="{{entry.shareURL}}">Zur Meldung</a> <a href="#contents">&#8593 Top &#8593</a></p>
 </div>
 <hr>
 {% endfor %}

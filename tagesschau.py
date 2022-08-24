@@ -25,3 +25,4 @@ simplemailer.SimpleSMTP.from_config() \
 .subject('News update: {title} '.format(**last_entry)) \
 .html(html) \
 .send()
+
